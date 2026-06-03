@@ -10,21 +10,21 @@ const BlogCard = ({ blog }) => {
       <Link to={`/blogs/${blog.slug}`}>
         <div className="w-full h-[200px] border rounded-md overflow-hidden">
           <img
-            src={`${BASE_URL}${blog.featured_image}`}
+            src={thumbnail}
             className="w-full h-full object-cover rounded-lg"
           />
         </div>
       </Link>
 
-      <Badge blog={blog} />
+      <Badge />
 
       <Link to={`/blogs/${blog.slug}`}>
         <h3 className="font-semibold  leading-normal text-[#181A2A] mb-0 dark:text-white">
-          {blog.title}
+          Build and Ecommerce Web App with Django and React
         </h3>
       </Link>
 
-      <CardFooter blog={blog} />
+      <CardFooter />
     </div>
   );
 };
