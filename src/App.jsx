@@ -1,15 +1,18 @@
-import NavBar from "./ui_components/NavBar";
-import Footer from "./ui_components/Footer";
+import DetailPage from "./pages/DetailPage";
+import HomePage from "./pages/HomePage";
+import ProfilePage from "./pages/ProfilePage";
+import { Route, Routes } from "react-router-dom";
+import AppLayout from "./ui_components/AppLayout";
 
 const App = () => {
   return (
-    <>
-      <div>
-        <NavBar />
-
-        <Footer />
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="detail" element={<DetailPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+      </Route>
+    </Routes>
   );
 };
 
