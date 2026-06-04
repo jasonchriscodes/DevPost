@@ -1,5 +1,6 @@
 import Badge from "@/ui_components/Badge";
 import BlogWriter from "@/ui_components/BlogWriter";
+import banner from "../images/detailBanner.jpg";
 
 const DetailPage = () => {
   return (
