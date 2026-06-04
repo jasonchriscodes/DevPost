@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 
 const AppLayout = () => {
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("dark") === "true",
+  );
+
+  useEffect(function () {
+    if (localStorage.getItem("dark") === null) {
+      localStorage.setItem("dark", "false");
+    }
+  }, []);
+
+  const handleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem("dark", newDarkMode ? "true" : "false");
+  };
+
   return (
-    <main className="w-full bg-[#ffffff] dark:bg-[#181A2A]">
-      <NavBar />
-      <Outlet />
-      <Footer />
-    </main>
+    <div className={darkMode ? "dark" : ""}>
+      <main className="w-full bg-[#ffffff] dark:bg-[#181A2A]">
+        <NavBar darkMode={darkMode} handleDarkMode={handleDarkMode} />
+        <Outlet />
+        <Footer />
+      </main>
+    </div>
   );
 };
 

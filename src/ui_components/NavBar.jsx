@@ -4,7 +4,7 @@ import { FaHamburger } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import ResponsiveNavBar from "./ResponsiveNavBar";
 
-const NavBar = () => {
+const NavBar = ({ darkMode, handleDarkMode }) => {
   const [showNavBar, setShowNavBar] = useState(false);
   return (
     <>
@@ -27,7 +27,7 @@ const NavBar = () => {
           <li className="font-semibold">Create post</li>
         </ul>
 
-        <Switch />
+        <Switch onCheckedChange={handleDarkMode} checked={darkMode} />
         <FaHamburger
           className="text-2xl cursor-pointer hidden max-md:block dark:text-white"
           onClick={() => setShowNavBar((curr) => !curr)}
