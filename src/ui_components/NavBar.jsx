@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { FaHamburger } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import ResponsiveNavBar from "./ResponsiveNavBar";
 
 const NavBar = () => {
@@ -13,7 +13,14 @@ const NavBar = () => {
           DevPost
         </Link>
         <ul className="flex items-center  justify-end gap-9 text-[#3B3C4A] lg:flex-1 max-md:hidden dark:text-[#FFFFFF]">
-          <li>Hi, Jason</li>
+          <li>
+            <NavLink
+              to="/profile"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Hi, Jason
+            </NavLink>
+          </li>
           <li>Logout</li>
           <li>Login</li>
           <li>Register</li>
