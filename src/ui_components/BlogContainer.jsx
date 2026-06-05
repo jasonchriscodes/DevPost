@@ -1,25 +1,21 @@
 import BlogCard from "./BlogCard";
 import Spinner from "./Spinner";
 
-const BlogContainer = ({ isPending }) => {
+const BlogContainer = ({ isPending, blogs, title = "Latest Posts" }) => {
   if (isPending) {
     return <Spinner />;
   }
 
   return (
-    <section className="padding-x py-6  max-container">
+    <section className="padding-x py-6 max-container">
       <h2 className="font-semibold text-xl mb-6 dark:text-white text-center">
-        Latest Posts
+        {title}
       </h2>
 
       <div className="flex items-center gap-6 justify-center flex-wrap">
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
-
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
+        {blogs?.results?.map((blog) => (
+          <BlogCard key={blog.id} blog={blog} />
+        ))}
       </div>
     </section>
   );
