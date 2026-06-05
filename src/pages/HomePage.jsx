@@ -1,6 +1,7 @@
 import { getBlogs } from "@/services/apiBlog";
 import BlogContainer from "@/ui_components/BlogContainer";
 import Header from "@/ui_components/Header";
+import Spinner from "@/ui_components/Spinner";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
@@ -15,12 +16,10 @@ const HomePage = () => {
     queryFn: getBlogs,
   });
 
-  console.log(blogs);
-
   return (
     <>
       <Header />
-      <BlogContainer />
+      <BlogContainer isPending={isPending} />
     </>
   );
 };

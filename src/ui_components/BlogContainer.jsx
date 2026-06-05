@@ -1,6 +1,11 @@
 import BlogCard from "./BlogCard";
+import Spinner from "./Spinner";
 
-const BlogContainer = () => {
+const BlogContainer = ({ isPending }) => {
+  if (isPending) {
+    return <Spinner />;
+  }
+
   return (
     <section className="padding-x py-6  max-container">
       <h2 className="font-semibold text-xl mb-6 dark:text-white text-center">
