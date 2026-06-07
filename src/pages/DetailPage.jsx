@@ -1,19 +1,32 @@
 import Badge from "@/ui_components/Badge";
 import BlogWriter from "@/ui_components/BlogWriter";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
 import banner from "../images/detailBanner.jpg";
-
-const blog = {
-  title: "Build an Ecommerce Web App with Django and React",
-  content:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt ipsam, facilis ea doloremque ad iusto aperiam neque laborum incidunt suscipit nostrum atque voluptates, dolorum quam at. Ratione cumque quos minima. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis nisi, natus ut odio dolorum minus soluta, sint, delectus omnis eaque sit tempora pariatur incidunt nesciunt. Veritatis est obcaecati accusantium reprehenderit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, sed. Ut tempore consequuntur ipsum? Aliquam sit odio dolorum quisquam, corporis eaque, delectus ab molestias laboriosam rerum recusandae totam deserunt similique!",
-  featured_image: banner,
-  author: {
-    username: "John Doe",
-  },
-  created_at: "04 Jun 2026",
-};
+import pic from "../images/pic.jpg";
+import { getBlog } from "@/services/apiBlog";
+import Spinner from "@/ui_components/Spinner";
+import { BASE_URL } from "@/api";
 
 const DetailPage = () => {
+  const { slug } = useParams();
+
+  const {
+    isPending,
+    isError,
+    error,
+    data: blog,
+  } = useQuery({
+    queryKey: ["blogs", slug],
+    queryFn: () => getBlog(slug),
+  });
+
+  console.log(blog);
+
+  if (isPending) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <div className="padding-x max-container py-9">
@@ -30,8 +43,7 @@ const DetailPage = () => {
         <div className="w-full h-[350px] my-9 overflow-hidden rounded-sm">
           <img
             className="w-full h-full object-cover rounded-sm"
-            src={blog.featured_image}
-            alt={blog.title}
+            src={`${BASE_URL}${blog.featured_image}`}
           />
         </div>
 
