@@ -14,7 +14,14 @@ const NavBar = ({ darkMode, handleDarkMode }) => {
         </Link>
         <ul className="flex items-center  justify-end gap-9 text-[#3B3C4A] lg:flex-1 max-md:hidden dark:text-[#FFFFFF]">
           <li>Logout</li>
-          <li>Login</li>
+          <li>
+            <NavLink
+              to="/signin"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Login
+            </NavLink>
+          </li>
           <li>
             <NavLink
               to="/signup"
