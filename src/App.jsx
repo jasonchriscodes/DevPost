@@ -8,6 +8,7 @@ import SignupPage from "./pages/SignupPage";
 import CreatePostPage from "./pages/CreatePostPage";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoute from "./ui_components/ProtectedRoute";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="*" element={<NotFoundPage />} />
           <Route path="blogs/:slug" element={<DetailPage />} />
           <Route path="signup" element={<SignupPage />} />
           <Route
