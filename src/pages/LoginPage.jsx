@@ -6,6 +6,8 @@ import { useMutation } from "@tanstack/react-query";
 import { signin } from "@/services/apiBlog";
 import { toast } from "react-toastify";
 import InputError from "@/ui_components/InputError";
+import SmallSpinnerText from "@/ui_components/SmallSpinnerText";
+import SmallSpinner from "@/ui_components/SmallSpinner";
 
 const LoginPage = () => {
   const { register, handleSubmit, formState } = useForm();
@@ -45,6 +47,7 @@ const LoginPage = () => {
         <Input
           type="text"
           id="username"
+          disabled={mutation.isPending}
           placeholder="Enter username"
           {...register("username", { required: "Username is required" })}
           className="border-2 border-[#141624] dark:border-[#3B3C4A] focus:outline-0 h-[40px] w-[300px]"
@@ -61,6 +64,7 @@ const LoginPage = () => {
         <Input
           type="password"
           id="password"
+          disabled={mutation.isPending}
           placeholder="Enter password"
           {...register("password", { required: "Password is required" })}
           className="border-2 border-[#141624] dark:border-[#3B3C4A] focus:outline-0 h-[40px]  w-[300px]"
@@ -70,12 +74,22 @@ const LoginPage = () => {
         )}
       </div>
 
-      <div className="w-full flex items-center justify-center flex-col my-4">
+      <div
+        disabled={mutation.isPending}
+        className="w-full flex items-center justify-center flex-col my-4"
+      >
         <button
           type="submit"
           className="bg-[#4B6BFB] text-white w-full py-3 px-2 rounded-md flex items-center justify-center gap-2"
         >
-          Signin
+          {mutation.isPending ? (
+            <>
+              {" "}
+              <SmallSpinner /> <SmallSpinnerText text="Logging in..." />
+            </>
+          ) : (
+            <SmallSpinnerText text="Signin" />
+          )}
         </button>
 
         <p className="text-[14px] mt-2">
