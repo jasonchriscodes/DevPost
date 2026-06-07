@@ -7,6 +7,8 @@ import InputError from "@/ui_components/InputError";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { registerUser } from "@/services/apiBlog";
+import SmallSpinnerText from "@/ui_components/SmallSpinnerText";
+import SmallSpinner from "@/ui_components/SmallSpinner";
 
 const SignupPage = () => {
   const { register, handleSubmit, formState, reset, watch } = useForm();
@@ -162,11 +164,15 @@ const SignupPage = () => {
       </div>
 
       <div className="w-full flex items-center justify-center flex-col my-4">
-        <button
-          type="submit"
-          className="bg-[#4B6BFB] text-white w-full py-3 px-2 rounded-md flex items-center justify-center gap-2"
-        >
-          Signup
+        <button className="bg-[#4B6BFB] text-white w-full py-3 px-2 rounded-md flex items-center justify-center gap-2">
+          {mutation.isPending ? (
+            <>
+              <SmallSpinner />
+              <SmallSpinnerText text="Creating user..." />
+            </>
+          ) : (
+            <SmallSpinnerText text="Signup" />
+          )}
         </button>
 
         <p className="text-[14px] mt-2">
