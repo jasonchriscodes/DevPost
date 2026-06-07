@@ -13,14 +13,6 @@ const NavBar = ({ darkMode, handleDarkMode }) => {
           DevPost
         </Link>
         <ul className="flex items-center  justify-end gap-9 text-[#3B3C4A] lg:flex-1 max-md:hidden dark:text-[#FFFFFF]">
-          {/* <li>
-            <NavLink
-              to="/profile"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              Hi, Jason
-            </NavLink>
-          </li> */}
           <li>Logout</li>
           <li>Login</li>
           <li>
@@ -31,7 +23,14 @@ const NavBar = ({ darkMode, handleDarkMode }) => {
               Register
             </NavLink>
           </li>
-          <li className="font-semibold">Create post</li>
+          <li className="font-semibold">
+            <NavLink
+              to="/create"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Create Post
+            </NavLink>
+          </li>
         </ul>
 
         <Switch onCheckedChange={handleDarkMode} checked={darkMode} />
