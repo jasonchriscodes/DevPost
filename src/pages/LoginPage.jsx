@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { signin } from "@/services/apiBlog";
@@ -12,6 +12,8 @@ import SmallSpinner from "@/ui_components/SmallSpinner";
 const LoginPage = () => {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: (data) => signin(data),
@@ -19,6 +21,8 @@ const LoginPage = () => {
       localStorage.setItem("access", response.access);
       localStorage.setItem("refresh", response.refresh);
       toast.success("You have successfully signed up!!");
+      const from = location?.state?.from?.pathname || "/";
+      navigate(from, { replace: true });
     },
     onError: (err) => {
       toast.error(err.message);
